@@ -16,7 +16,20 @@ public class Teste1 {
 			excursao.criarReserva("555", "antonio");
 			excursao.criarReserva("555", "joana");
 			
+			excursao.salvar();
 			System.out.println(excursao.listarGeral());
+			
+			Excursao excursao2 = new Excursao(999, 888, 5);
+			System.out.println("excursao:" + excursao2);
+			
+			excursao2.criarReserva("912", "joao");
+			excursao2.criarReserva("913", "maria");
+			excursao2.criarReserva("914", "felipe");
+//			excursao2.cancelarReserva("914");
+			
+			excursao2.salvar();
+			System.out.println(excursao2);
+			
 
 //			System.out.println("\nlistar todas as reservas");
 //			System.out.println(excursao.listarReservasPorCpf(""));
@@ -26,20 +39,20 @@ public class Teste1 {
 //			System.out.println(excursao.listarReservasPorNome("jo"));
 //
 //			excursao.cancelarReserva("555", "claudia");
-			excursao.cancelarReserva("333");
+			excursao.cancelarReserva("111");
 			excursao.cancelarReserva("555", "joana");
-			
+//			
 			System.out.println(excursao.listarGeral());
-			System.out.println(excursao);
-
-
-			System.out.println("\nlistar todas as reservas");
-			System.out.println(excursao.listarReservasPorCpf("222"));
-			System.out.println(excursao.listarGeral());
-			System.out.println(excursao.listarReservasPorNome("antonio"));
-			System.out.println(excursao.listarGeral());
-			System.out.println("\nexcursao:" + excursao);
-			System.out.println("\ntotal=" + excursao.calcularValorTotal());
+//			System.out.println(excursao);
+//
+//
+//			System.out.println("\nlistar todas as reservas");
+//			System.out.println(excursao.listarReservasPorCpf("222"));
+//			System.out.println(excursao.listarGeral());
+//			System.out.println(excursao.listarReservasPorNome("antonio"));
+//			System.out.println(excursao.listarGeral());
+//			System.out.println("\nexcursao:" + excursao);
+//			System.out.println("\ntotal=" + excursao.calcularValorTotal());
 		} 
 		catch (Exception erro) {
 			System.out.println("-->" + erro.getMessage());

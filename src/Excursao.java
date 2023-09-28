@@ -203,13 +203,13 @@ public class Excursao {
 	}
 
 	// Gravar no arquivo “codigo.txt” o preço, maxReservas e as reservas
-	public void salvar() {
+	public void salvar() throws IOException {
 		// Grava as reservas no arquivo 'codigo.csv' que será criado no diretório atual
 	    File f = new File(new File(".\\codigo.csv").getCanonicalPath()); // pasta do projeto
 	    // O objeto 'arq' é criado para escrever no arquivo representado por f. O argumento 'true' indica que novos dados serão adicionados ao final do arquivo, preservando os dados existentes
 		FileWriter arq = new FileWriter(f, true);
 		// Contém as informações solicitadas pelo professor que deveriam ser gravadas no arquivo .csv
-		arq.write(getPreco() + "; " + getmaxReservas() + "; " + nome + "/" + cpf + "\n");
+		arq.write(getPreco() + "; " + getmaxReservas() + "; " + getReservas() + "\n");
 		// Fecha o arquivo
 		arq.close();
 	}
@@ -245,12 +245,13 @@ public class Excursao {
 	}
 
 	public ArrayList<String> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(ArrayList<String> reservas) {
-		this.reservas = reservas;
-	}
-	
-	
+		ArrayList<String> arrayReservaAtual = new ArrayList<String>();
+		for (String reservaAtual : reservas) {
+			if (!reservaAtual.equals("disponivel")) {
+				arrayReservaAtual.add(reservaAtual);
+			}
+		}
+		
+		return arrayReservaAtual;
+	}	
 }

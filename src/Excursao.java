@@ -112,8 +112,8 @@ public class Excursao {
 		// ArrayList auxiliar para onde as reservas NÃO RELACIONADAS com o cpf serão armazenadas
 	    ArrayList<String> reservasNaoRemovidas = new ArrayList<>();
 	    // Varre a ArrayList 'reservas'
-	    for (String reserva : reservas) {
-	        String[] partes = reserva.split("/");
+	    for (String reservaAtual : reservas) {
+	        String[] partes = reservaAtual.split("/");
 	        // Verifica se tem alguma vaga associada ao CPF
 	        if (partes.length == 2 && partes[0].equals(cpf)) {
 	        	// Altera o valor da variável de controle
@@ -121,7 +121,7 @@ public class Excursao {
 	        } 
 	        else {    
 	        	// Caso a reserva em questão não esteja associada ao CPF, mantém a reserva na lista de reservas não removidas
-	            reservasNaoRemovidas.add(reserva);
+	            reservasNaoRemovidas.add(reservaAtual);
 	        }
 	    }
 	    // Atualiza a lista de reservas apenas com as reservas não removidas
@@ -245,13 +245,17 @@ public class Excursao {
 	}
 
 	public ArrayList<String> getReservas() {
-		ArrayList<String> arrayReservaAtual = new ArrayList<String>();
+		// Cria um ArrayList auxiliar par armazenar apenas as reservas efetivas
+		ArrayList<String> arrayReservaEfetiva = new ArrayList<String>();
+		// for-each para percorrer 'reservas'
 		for (String reservaAtual : reservas) {
+			// Se o elemento atual for diferente de "disponível", ou seja, for uma reserva de fato, não será adicionada ao ArrayList auxiliar
 			if (!reservaAtual.equals("disponivel")) {
-				arrayReservaAtual.add(reservaAtual);
+				// Caso seja diferente de "disponível", adicionará à 'arrayReservaEfetiva'
+				arrayReservaEfetiva.add(reservaAtual);
 			}
 		}
-		
-		return arrayReservaAtual;
+		//Retorna o ArrayList auxiliar
+		return arrayReservaEfetiva;
 	}	
 }

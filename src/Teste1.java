@@ -15,6 +15,7 @@ public class Teste1 {
 			excursao.criarReserva("333", "ana");
 			excursao.criarReserva("555", "antonio");
 			excursao.criarReserva("555", "joana");
+			excursao.criarReserva("666", "joao");
 			
 			excursao.salvar();
 			System.out.println(excursao.listarGeral());
@@ -31,32 +32,33 @@ public class Teste1 {
 			System.out.println(excursao2);
 			
 
-//			System.out.println("\nlistar todas as reservas");
-//			System.out.println(excursao.listarReservasPorCpf(""));
-//			System.out.println("\nlistar as reservas por cpf");
-//			System.out.println(excursao.listarReservasPorCpf("3"));
-//			System.out.println("\nlistar as reservas por nome");
-//			System.out.println(excursao.listarReservasPorNome("jo"));
+			System.out.println("\nlistar todas as reservas");
+			System.out.println(excursao.listarReservasPorCpf(""));
+			System.out.println("\nlistar as reservas por cpf");
+			System.out.println(excursao.listarReservasPorCpf("3"));
+			System.out.println("\nlistar as reservas por nome");
+//			System.out.println(excursao.listarReservasPorNome("joao"));
 //
 //			excursao.cancelarReserva("555", "claudia");
-			excursao.cancelarReserva("111");
+//			excursao.cancelarReserva("111");
 			excursao.cancelarReserva("555", "joana");
 //			
 			System.out.println(excursao.listarGeral());
 //			System.out.println(excursao);
 //
 //
-//			System.out.println("\nlistar todas as reservas");
-//			System.out.println(excursao.listarReservasPorCpf("222"));
-//			System.out.println(excursao.listarGeral());
-//			System.out.println(excursao.listarReservasPorNome("antonio"));
-//			System.out.println(excursao.listarGeral());
-//			System.out.println("\nexcursao:" + excursao);
-//			System.out.println("\ntotal=" + excursao.calcularValorTotal());
-		} 
+			System.out.println("\nlistar todas as reservas");
+			System.out.println(excursao.listarReservasPorCpf("222"));
+			System.out.println("Listando todas as reservas novamente:");
+			System.out.println(excursao.listarGeral());
+			System.out.println("-----------------------------");
+			System.out.println(excursao.listarReservasPorNome("antonio"));
+			System.out.println(excursao.listarGeral());
+			System.out.println("\nexcursao:" + excursao);
+			System.out.println("\ntotal=" + excursao.calcularValorTotal());
+		}
 		catch (Exception erro) {
 			System.out.println("-->" + erro.getMessage());
 		}
-
 	}
 }

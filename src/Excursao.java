@@ -131,59 +131,49 @@ public class Excursao {
 	        throw new Exception("CPF inexistente");
 	    }
 	}
-
-	public ArrayList<String> listarGeral() {
-		return reservas;
+	
+	// Caso o cliente mude de ideia e queira cancelar todas as vagas ainda em aberto (para o caso, por exemplo, ele ter solicitado 
+	public void cancelarReservasDisponiveis() {
+		// Para fazer --- caso ainda faça sentido após di
 	}
 
-	// Retorna as reservas dos cpfs que contém os dígitos (ou retorna todas as reservas caso dígitos seja vazio)
-	public ArrayList<String> listarReservasPorCpf(String cpf) throws Exception {
-		
+	// Retorna as reservas relacionadas ao 'cpf' que foi passado no método
+	public ArrayList<String> listarReservasPorCpf(String cpf) throws Exception {		
+		// Caso o cpf seja vazio, retorna todas as reservas
 		if (cpf == "") {
 			return reservas;
 		}
-		
+		// Caso contrário, iremos procurar se alguma reserva bate com 'cpf'
 		else {
-			// Array auxiliar que será utilizado para armazenar as reservas associadas ao Cpf em questão (de modo a não alterar o ArrayList principal 'reservas'
+			// ArrayList auxiliar para armazenar as reservas que batem com o 'cpf' passado no método
 			ArrayList<String> reservasPorCpf = new ArrayList<>();
-			
-			// Varre o array reservas à procura do cpf
-			for (int i = 0; i < reservas.size(); i++) {
-				String reserva = reservas.get(i);
-		        String[] partes = reserva.split("/");
-
-		        // Verifica se tem alguma vaga associada ao CPF
-		        if (partes.length == 2 && partes[0].equals(cpf)) {
-		            // Caso tenha alguma associação, a reserva em questão será armazenada no array auxiliar
-		            reservasPorCpf.add(reserva);
-		        }
+			for (String reservaAtual : reservas) {
+				String[] partes = reservaAtual.split("/");
+				if(partes.length == 2 && partes[0].equals(cpf)) {
+					// Caso alguma reserva possua o 'cpf' igual, está reserva será adicionada ao ArrayList auxiliar
+					reservasPorCpf.add(reservaAtual);
+				}
 			}
 			// Retorna o array auxiliar
 			return reservasPorCpf;
 		}
 	}
 
-	// Retorna as reservas dos nomes que contém o texto (ou retorna todas as
-	// reservas caso texto seja vazio)
+	// Retorna as reservas relacionadas ao 'nome' passado no método
 	public ArrayList<String> listarReservasPorNome(String nome) {
+		// Caso 'nome' seja vazio, retorna todas as reservas
 		if (nome == "") {
 			return reservas;
 		}
-		
 		else {
-			// Array auxiliar que será utilizado para armazenar as reservas associadas ao Cpf em questão (de modo a não alterar o ArrayList principal 'reservas'
+			// ArrayList auxiliar para armazenar as reservas que batem com o 'nome' passado no método
 			ArrayList<String> reservasPorNome = new ArrayList<>();
-			
-			// Varre o array reservas à procura do cpf
-			for (int i = 0; i < reservas.size(); i++) {
-				String reserva = reservas.get(i);
-		        String[] partes = reserva.split("/");
-
-		        // Verifica se tem alguma vaga associada ao CPF
-		        if (partes.length == 2 && partes[1].equals(nome)) {
-		            // Caso tenha alguma associação, a reserva em questão será armazenada no array auxiliar
-		            reservasPorNome.add(reserva);
-		        }
+			for (String reservaAtual : reservas) {
+				String[] partes = reservaAtual.split("/");
+				if(partes.length == 2 && partes[1].equals(nome)) {
+					// Caso alguma reserva possua o 'nome' igual, está reserva será adicionada ao ArrayList auxiliar
+					reservasPorNome.add(reservaAtual);
+				}
 			}
 			// Retorna o array auxiliar
 			return reservasPorNome;
@@ -193,13 +183,6 @@ public class Excursao {
 	// Calcular valor total da excursão = preço * qde de reservas
 	public double calcularValorTotal() {
 		return preco * (reservas.size());
-	}
-
-	// Retorna codigo, preço, maxReservas e total de reservas
-	@Override
-	public String toString() {
-		return "Excursao [codigo=" + codigo + ", preco=" + preco + ", maxReservas=" + maxReservas + ", Quantidade de reservas="
-				+ reservas.size() + "]";
 	}
 
 	// Gravar no arquivo “codigo.txt” o preço, maxReservas e as reservas
@@ -218,6 +201,12 @@ public class Excursao {
 	public void carregar() {
 
 	}
+	
+	// Retorna codigo, preço, maxReservas e total de reservas
+		@Override
+	public String toString() {
+			return "Código = " + codigo + "\nPreço = " + preco + "\nN° máximo de reservas = " + maxReservas + "\nQuantidade de reservas efetivas = " + getReservas().size();
+		}
 	
 	// Getters e Setters
 	public int getCodigo() {

@@ -94,7 +94,7 @@ public class Excursao {
 	}
 
 	public ArrayList<String> listarReservasPorCpf(String cpf) throws Exception {
-		if (cpf == "") {			// Caso o cpf seja vazio, retorna todas as reservas
+		if (cpf.equals("")) {			// Caso o cpf seja vazio, retorna todas as reservas
 			return reservas;
 		}
 		else { 						// Caso contrário, iremos procurar se alguma reserva bate com 'cpf'
@@ -110,7 +110,7 @@ public class Excursao {
 	}
 
 	public ArrayList<String> listarReservasPorNome(String nome) {
-		if (nome == "") { 			// Caso 'nome' seja vazio, retorna todas as reservas
+		if (nome.equals("")) { 			// Caso 'nome' seja vazio, retorna todas as reservas
 			return reservas;
 		}
 		else {
@@ -149,8 +149,30 @@ public class Excursao {
 	}
 	
 	public void carregar() throws Exception {
-		
-			}
+	    try {
+	        File arquivo = new File(".\\" + getCodigo() + ".csv"); // Abre o arquivo .csv
+	        Scanner scanner = new Scanner(arquivo);
+	        reservas.clear();				// Limpa as reservas atuais antes de carregar os dados do arquivo
+	        if (scanner.hasNextLine()) { 	// Pula a primeira linha (cabeçalho) do arquivo CSV
+	            scanner.nextLine();
+	        }
+	        while (scanner.hasNextLine()) { // Lê as linhas restantes do arquivo e adiciona as reservas ao ArrayList
+	            String linha = scanner.nextLine();
+	            String[] partes = linha.split(";");
+	            
+	            if (partes.length >= 3) {
+	                String reserva = partes[2].trim();		// A reserva está na terceira coluna
+	                reservas.add(reserva);
+	            }
+	        }
+
+	        scanner.close();
+	    }
+	    
+	    catch (IOException e) {
+	        throw new Exception("Problema na leitura do arquivo");
+	    }
+	}
 
 	public int getCodigo() { 					// Getters e Setters
 		return codigo;

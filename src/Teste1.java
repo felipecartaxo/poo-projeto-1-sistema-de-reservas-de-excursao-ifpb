@@ -38,6 +38,13 @@ public class Teste1 {
 			excursao2.cancelarReserva("2");
 			excursao2.gravar();
 			System.out.println("Excursao 2: " + excursao2);
+			
+			Excursao excursao3 = new Excursao(999);
+			System.out.println(excursao3);
+			excursao3.gravar();
+			
+			System.out.println("test");
+			System.out.println(excursao.listarReservasPorNome("paulo"));
 //
 //			System.out.println("\nlistar todas as reservas");
 //			System.out.println(excursao.listarReservasPorCpf(""));

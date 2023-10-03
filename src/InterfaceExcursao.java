@@ -23,6 +23,8 @@ public class InterfaceExcursao {
 	private JTextArea textArea_1;
 	private JTextArea textArea_2;
 	private JButton button_1;
+	private JButton button_2;
+	private JButton button_3;
 
 	/**
 	 * Launch the application.
@@ -58,18 +60,18 @@ public class InterfaceExcursao {
 		frame.setBounds(100, 100, 450, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
+		// Cadastra uma excursão
 		button = new JButton("Cadastrar excursão");
 		button.setBackground(new Color(192, 192, 192));
-		button.setFont(new Font("Verdana", Font.PLAIN, 11));
+		button.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String codigo = JOptionPane.showInputDialog("Informe o código: ");
-				String preco = JOptionPane.showInputDialog("Informe o preço: ");
-				String maxReservas = JOptionPane.showInputDialog("Informe o n° máximo de reservas: ");
-				
 				try {
+					String codigo = JOptionPane.showInputDialog("Informe o código: ");
+					String preco = JOptionPane.showInputDialog("Informe o preço: ");
+					String maxReservas = JOptionPane.showInputDialog("Informe o n° máximo de reservas: ");
 					excursao = new Excursao(Integer.parseInt(codigo), Double.parseDouble(preco),  Integer.parseInt(maxReservas));
 					excursao.gravar();
 					textArea.setText(excursao.toString());
@@ -120,8 +122,49 @@ public class InterfaceExcursao {
 		frame.getContentPane().add(textArea_2);
 		
 		button_1 = new JButton("Criar reserva");
+		button_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		button_1.setBackground(new Color(192, 192, 192));
 		button_1.setFont(new Font("Monospaced", Font.PLAIN, 14));
-		button_1.setBounds(43, 318, 148, 23);
+		button_1.setBounds(43, 347, 148, 23);
 		frame.getContentPane().add(button_1);
+		
+		// Recuperar dados de uma excursão existente
+		button_2 = new JButton("Recuperar excursão");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String codigo = JOptionPane.showInputDialog("Informe o código: ");
+				}
+				catch(Exception ex) {
+					textArea.setText(ex.getMessage());
+				}
+			}
+		});
+		button_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		button_2.setBackground(new Color(192, 192, 192));
+		button_2.setFont(new Font("Monospaced", Font.PLAIN, 10));
+		button_2.setBounds(43, 319, 148, 23);
+		frame.getContentPane().add(button_2);
+		
+		// Cria uma reserva para uma excursão existente
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String cpf = JOptionPane.showInputDialog("Informe o cpf: ");
+					String nome = JOptionPane.showInputDialog("Informe o nome: ");
+					
+					excursao.criarReserva(cpf, nome);
+					excursao.gravar();
+					label.setText("Foi adicionada uma reserva.");
+				}
+				catch(Exception ex) {
+					label.setText(ex.getMessage());
+				}
+			}
+		});
+		
+		
+		
+		
 	}
 }

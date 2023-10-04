@@ -38,13 +38,13 @@ public class ExcursaoInterface {
 	private JLabel label_8;
 	private JLabel label_9;
 	private JLabel label_10;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField cancelarReservaCpf;
+	private JTextField cancelarReservaNome;
 	private JLabel label_11;
 	private JLabel label_12;
-	private JButton button_2;
-	private JButton button_3;
-	private JTextField textField_8;
+	private JButton cancelarReservaButton;
+	private JButton cancelarReservaButton2;
+	private JTextField cancelarReservaCpf2;
 	private JPanel panel_4;
 	private JLabel label_13;
 	private JTextArea listarReservasCpfTextArea;
@@ -56,9 +56,8 @@ public class ExcursaoInterface {
 	private JButton listarReservasNomeButton;
 	private JTextField listarReservasNomeInput;
 	private JPanel panel_6;
-	private JButton button_6;
+	private JButton calcularValorTotalButton;
 	private JLabel label_15;
-	private JTextField textField_11;
 	private JButton SalvarButton;
 	private JButton CarregarButton;
 	
@@ -66,6 +65,8 @@ public class ExcursaoInterface {
 	private JLabel cadastroExcursaoLog;
 	private JButton button;
 	private JLabel recuperarLabel;
+	private JLabel valorTotalLog;
+	private JLabel valorTotalLabel;
 
 	/**
 	 * Launch the application.
@@ -95,6 +96,7 @@ public class ExcursaoInterface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBounds(100, 100, 450, 331);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -139,7 +141,7 @@ public class ExcursaoInterface {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					int codigo = Integer.parseInt(codigoInput.getText());
-					double preco = Double.parseDouble(codigoInput.getText());
+					double preco = Double.parseDouble(precoInput.getText());
 					int maxReservas = Integer.parseInt(maxReservasInput.getText());
 					
 					if ((preco <= 0) && (maxReservas <= 0)) {
@@ -242,15 +244,15 @@ public class ExcursaoInterface {
 		label_10.setBounds(25, 64, 140, 14);
 		panel_3.add(label_10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(218, 36, 201, 20);
-		panel_3.add(textField_6);
-		textField_6.setColumns(10);
+		cancelarReservaCpf = new JTextField();
+		cancelarReservaCpf.setBounds(218, 36, 201, 20);
+		panel_3.add(cancelarReservaCpf);
+		cancelarReservaCpf.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(218, 61, 201, 20);
-		panel_3.add(textField_7);
-		textField_7.setColumns(10);
+		cancelarReservaNome = new JTextField();
+		cancelarReservaNome.setBounds(218, 61, 201, 20);
+		panel_3.add(cancelarReservaNome);
+		cancelarReservaNome.setColumns(10);
 		
 		label_11 = new JLabel("Cancelar reserva grupo:");
 		label_11.setBounds(157, 142, 117, 14);
@@ -260,18 +262,43 @@ public class ExcursaoInterface {
 		label_12.setBounds(25, 170, 140, 14);
 		panel_3.add(label_12);
 		
-		button_2 = new JButton("Cancelar reserva (indiv)");
-		button_2.setBounds(131, 102, 177, 23);
-		panel_3.add(button_2);
+		cancelarReservaButton = new JButton("Cancelar reserva (indiv)");
+		cancelarReservaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String cpf = cancelarReservaCpf.getText();
+					String nome = cancelarReservaNome.getText();
+					excursao.cancelarReserva(cpf, nome);
+					excursao.gravar();
+				}
+				catch(Exception ex) {
+					label.setText(ex.getMessage());
+				}
+			}
+		});
+		cancelarReservaButton.setBounds(131, 102, 177, 23);
+		panel_3.add(cancelarReservaButton);
 		
-		button_3 = new JButton("Cancelar reserva (grupo)");
-		button_3.setBounds(131, 199, 177, 23);
-		panel_3.add(button_3);
+		cancelarReservaButton2 = new JButton("Cancelar reserva (grupo)");
+		cancelarReservaButton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String cpf = cancelarReservaCpf2.getText();
+					excursao.cancelarReserva(cpf);
+				}
+				catch(Exception ex) {
+					label.setText(ex.getMessage());
+				}
+				
+			}
+		});
+		cancelarReservaButton2.setBounds(131, 199, 177, 23);
+		panel_3.add(cancelarReservaButton2);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(218, 167, 201, 20);
-		panel_3.add(textField_8);
-		textField_8.setColumns(10);
+		cancelarReservaCpf2 = new JTextField();
+		cancelarReservaCpf2.setBounds(218, 167, 201, 20);
+		panel_3.add(cancelarReservaCpf2);
+		cancelarReservaCpf2.setColumns(10);
 		
 		panel_4 = new JPanel();
 		tabbedPane.addTab("Listar reservas por CPF", null, panel_4, null);
@@ -282,6 +309,7 @@ public class ExcursaoInterface {
 		panel_4.add(label_13);
 		
 		listarReservasCpfTextArea = new JTextArea();
+		listarReservasCpfTextArea.setEditable(false);
 		listarReservasCpfTextArea.setBounds(21, 47, 398, 134);
 		panel_4.add(listarReservasCpfTextArea);
 		
@@ -321,6 +349,7 @@ public class ExcursaoInterface {
 		panel_5.add(label_14);
 		
 		listarReservasNomeTextArea = new JTextArea();
+		listarReservasNomeTextArea.setEditable(false);
 		listarReservasNomeTextArea.setBounds(21, 47, 398, 134);
 		panel_5.add(listarReservasNomeTextArea);
 		
@@ -370,6 +399,7 @@ public class ExcursaoInterface {
 				try {
 					int codigo = Integer.parseInt(recuperarCodInput.getText());
 					excursao = new Excursao(codigo);
+					excursao.carregar();
 					recuperarLabel.setText("Excursão recuperada");
 				}
 				catch(Exception ex) {
@@ -388,17 +418,31 @@ public class ExcursaoInterface {
 		tabbedPane.addTab("Calcular valor total", null, panel_6, null);
 		panel_6.setLayout(null);
 		
-		button_6 = new JButton("Calcular valor total");
-		button_6.setBounds(139, 55, 154, 23);
-		panel_6.add(button_6);
+		calcularValorTotalButton = new JButton("Calcular valor total");
+		calcularValorTotalButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					String valorTotal = Double.toString(excursao.calcularValorTotal());	
+					valorTotalLabel.setText(valorTotal);
+				}
+				catch(Exception ex) {
+					recuperarLabel.setText(ex.getMessage());
+				}
+			}
+		});
+		calcularValorTotalButton.setBounds(139, 55, 154, 23);
+		panel_6.add(calcularValorTotalButton);
 		
-		label_15 = new JLabel("Valor total (R$):");
+		label_15 = new JLabel("Valor total (R$): ");
 		label_15.setBounds(53, 115, 92, 14);
 		panel_6.add(label_15);
 		
-		textField_11 = new JTextField();
-		textField_11.setBounds(170, 111, 163, 20);
-		panel_6.add(textField_11);
-		textField_11.setColumns(10);
+		valorTotalLog = new JLabel("");
+		valorTotalLog.setBounds(27, 205, 364, 14);
+		panel_6.add(valorTotalLog);
+		
+		valorTotalLabel = new JLabel("");
+		valorTotalLabel.setBounds(139, 115, 154, 14);
+		panel_6.add(valorTotalLabel);
 	}
 }

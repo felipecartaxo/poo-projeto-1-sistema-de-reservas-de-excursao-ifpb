@@ -18,6 +18,7 @@ public class Interface {
 	private JButton btnCriarExcursao;
 	private JButton btnRecuperarExcursao;
 	private JButton btnCriarReserva1;
+	private JButton btnCancelar1;
 	private JButton btnCancelar2;
 	private JButton btnListarReserva1;
 	private JButton btnListarReserva2;
@@ -36,7 +37,6 @@ public class Interface {
 	private JTextField textNome;
 	
 	private Excursao excursao;
-	private JButton btnCancelar1;
 
 	/**
 	 * Launch the application.
@@ -90,8 +90,12 @@ public class Interface {
 						excursao.gravar();
 					}
 					
-					log.setText("Excursão " + codigo + " criada com sucesso.");
-					
+					log.setText("Excursão criada com sucesso.");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 					
 				}
 				catch (Exception ex) {
@@ -108,8 +112,15 @@ public class Interface {
 				try {
 					int codigo = Integer.parseInt(textCodigo.getText());
 					excursao = new Excursao(codigo);
-					log.setText("Excursão recuperada");
+					excursao.carregar();
+					
+					log.setText("Excursão recuperada.");
 					main.setText(excursao.toString());
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch(Exception ex) {
 					log.setText("Código não registrado.");
@@ -127,7 +138,13 @@ public class Interface {
 					String nome = textNome.getText();
 					
 					excursao.criarReserva(cpf, nome);
+					
 					log.setText("Reserva criada com sucesso");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch(Exception ex) {
 					log.setText(ex.getMessage());
@@ -142,9 +159,14 @@ public class Interface {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					String cpf = textCpf.getText();
-					
 					excursao.cancelarReserva(cpf);
+					
 					log.setText("Reserva removida com sucesso.");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch(Exception ex) {
 					log.setText(ex.getMessage());
@@ -166,6 +188,12 @@ public class Interface {
 						sb.append("\n");
 					}
 					main.setText((sb.toString()));
+					log.setText("Reservas listadas (por CPF).");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch (Exception ex) {
 					log.setText(ex.getMessage());
@@ -187,6 +215,12 @@ public class Interface {
 						sb.append("\n");
 					}
 					main.setText((sb.toString()));
+					log.setText("Reservas listadas (por nome).");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch (Exception ex) {
 					log.setText(ex.getMessage());
@@ -202,6 +236,13 @@ public class Interface {
 				try {
 					String valorTotal = Double.toString(excursao.calcularValorTotal());	
 					main.setText(valorTotal);
+					
+					log.setText("Valor total calculado.");
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch(Exception ex) {
 					log.setText(ex.getMessage());
@@ -212,6 +253,7 @@ public class Interface {
 		panel.add(btnCalcularValorTotal);
 		
 		main = new JTextArea();
+		main.setLineWrap(true);
 		main.setBounds(10, 289, 414, 285);
 		panel.add(main);
 		
@@ -273,6 +315,12 @@ public class Interface {
 					
 					excursao.cancelarReserva(cpf, nome);
 					log.setText("Reserva " + cpf + "/" + nome + " removida com sucesso.");
+					
+					textCodigo.setText("");
+					textPreco.setText("");
+					textMaxReservas.setText("");
+					textCpf.setText("");
+					textNome.setText("");
 				}
 				catch(Exception ex) {
 					log.setText(ex.getMessage());

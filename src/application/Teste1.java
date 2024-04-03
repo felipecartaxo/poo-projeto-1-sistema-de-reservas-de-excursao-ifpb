@@ -1,3 +1,7 @@
+package application;
+
+import model.entities.Excursao;
+
 /**
  * TSI - POO - Prof. Fausto projeto1
  */
@@ -23,15 +27,14 @@ public class Teste1 {
 			System.out.println("\nlistar as reservas por nome");
 			System.out.println(excursao.listarReservasPorNome("jo"));
 
-			excursao.cancelarReserva("555", "antonio");		//correcao
+			excursao.cancelarReserva("555", "antonio"); // correcao
 			excursao.cancelarReserva("333");
 
 			System.out.println("\nlistar todas as reservas");
 			System.out.println(excursao.listarReservasPorCpf(""));
 			System.out.println("\nexcursao:" + excursao);
 			System.out.println("\ntotal=" + excursao.calcularValorTotal());
-		} 
-		catch (Exception erro) {
+		} catch (Exception erro) {
 			System.out.println("-->" + erro.getMessage());
 		}
 

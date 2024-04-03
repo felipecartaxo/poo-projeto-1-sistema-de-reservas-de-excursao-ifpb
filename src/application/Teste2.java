@@ -1,3 +1,7 @@
+package application;
+
+import model.entities.Excursao;
+
 /**
  * TSI - POO - Prof. Fausto projeto1
  */

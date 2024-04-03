@@ -12,7 +12,7 @@ Este projeto consiste em uma aplicação para gerenciamento de excursões turís
 
 4. **Cálculo do Valor Total**: A aplicação calcula automaticamente o valor total da excursão considerando o número de reservas realizadas e o preço por pessoa.
 
-5. **Persistência de Dados**: As informações das excursões e suas reservas são persistidas em arquivos para que os dados sejam preservados entre sessões da aplicação.
+5. **Persistência de Dados**: As informações das excursões e suas reservas são persistidas em arquivos .csv para que os dados sejam preservados entre sessões da aplicação.
 
 ## Como Utilizar
 

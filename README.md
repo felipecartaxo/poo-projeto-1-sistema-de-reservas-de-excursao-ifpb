@@ -1,4 +1,4 @@
-# Excursões Turísticas
+# Sistema para gerenciar excursões turísticas
 
 Este projeto consiste em uma aplicação para gerenciamento de excursões turísticas oferecidas por uma empresa de turismo. A aplicação permite a reserva de excursões, tanto individualmente quanto em grupo, com a possibilidade de cancelamento e consulta de reservas. 
 
@@ -14,15 +14,11 @@ Este projeto consiste em uma aplicação para gerenciamento de excursões turís
 
 5. **Persistência de Dados**: As informações das excursões e suas reservas são persistidas em arquivos .csv para que os dados sejam preservados entre sessões da aplicação.
 
-## Como Utilizar
+## Como utilizar
 
-1. **Instalação e Configuração**: Clone o repositório em sua máquina local. Certifique-se de ter o Java JDK instalado para executar o código.
-
-2. **Compilação e Execução**: Utilize um ambiente de desenvolvimento Java, como Eclipse ou IntelliJ, para compilar e executar a aplicação. Você também pode compilar manualmente utilizando o comando `javac` e executar com `java`.
-
-3. **Interagindo com a Aplicação**: Após executar a aplicação, você poderá interagir com ela através de um menu interativo no console. Siga as instruções para cadastrar excursões, realizar reservas, consultar reservas, cancelar reservas e calcular o valor total.
-
-4. **Persistência de Dados**: As informações das excursões e suas reservas serão automaticamente salvas em arquivos com extensão `.txt`. Certifique-se de que a aplicação tenha permissão para escrever e ler arquivos no diretório onde está sendo executada.
+1. Clone o repositório em sua máquina local.
+2. Compile e execute o projeto, garantindo que todas as dependências estejam instaladas.
+3. Utilize a interface gráfica para gerenciar eventos, participantes e ingressos conforme suas necessidades.
 
 ## Contribuição
 
